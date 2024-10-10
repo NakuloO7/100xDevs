@@ -5,9 +5,8 @@ export const countAtom = atom({
     key : "countAtom",
     default : 0
 });
-
-
 //key must be unique for every atom
+
 
 export const evenSelector = selector({
     key : "evenSelector",
