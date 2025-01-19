@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+//This is how we can define the models in the prisma
+//we just have to create such and models and don't need to worry about the SQL queries we write
+
+//if we want to add lets say any new colum just define it in the schema..
+model User {
+  id Int @id @default(autoincrement())
+  email String @unique
+  firstName String?
+  lastName String?
+  password String
+}
+
+model Todo {
+  id Int @id @default(autoincrement())
+  title String
+  done Boolean @default(false)
+  description String?
+  userId Int
+}
