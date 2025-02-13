@@ -72,10 +72,10 @@ const deleteUser = async (email : string)=>{
 
 const getUserData = async(email : string)=>{
     try{
-        const result = await prisma.user.findUnique({
-            where : {email}
-        })
-
+         const result = await prisma.user.findUnique({
+             where : {email}
+         })
+ 
         console.log("The user found", result)
     }catch(e){
         console.log("There is an error in this code", e)
