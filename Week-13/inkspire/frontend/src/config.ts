@@ -1,0 +1,1 @@
+export const BACKEND_URL = "https://backend.nakulgite08.workers.dev"

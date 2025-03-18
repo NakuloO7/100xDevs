@@ -1,0 +1,3 @@
+this common folder has zod validation which is been deployed as a package in npm named as '@nakul_123/inkspire-common'
+
+which can be used by both the frontend and the backend of this application
