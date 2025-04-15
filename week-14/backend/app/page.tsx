@@ -1,8 +1,13 @@
-import axios from "axios";
+import prisma from '@/db';  //this is a singleton prisma client which does not reload again and again
 
+//instead of using the axios to fetch the data from server "/api/user"
+//we can directly fetch the data from the database 
+//unless the server is inside the same app
 async function getUserDetails() {
-  const response = await axios.get("http://localhost:3000/api/user")
-	return response.data;
+  const user = await prisma.user.findFirst({});
+  return({
+      username : user?.username
+  })
 }
 
 export default async function Home() {
