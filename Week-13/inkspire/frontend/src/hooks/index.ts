@@ -11,6 +11,7 @@ export interface Blog {
   };
 }
 
+//return a single blog
 export const useBlog = ({ id }: { id: number }) => {
   const [loading, setLoading] = useState(true);
   const [blog, setBlog] = useState<Blog>();
@@ -34,6 +35,8 @@ export const useBlog = ({ id }: { id: number }) => {
   };
 };
 
+
+//return all the blogs
 export const useBlogs = () => {
   const [loading, setLoading] = useState(true);
   const [blogs, setBlogs] = useState<Blog[]>([]);
