@@ -1,20 +1,19 @@
-"use server"
-//as this is a server action component we have to define it explicitly
 
-import prisma from "@/db";
+// actions/user.ts
+"use server"; // This directive marks the file as containing Server Actions
 
-export async function signup(email :string, password :string) {
+import client from "@/db";
 
-  try {
-    const user = await prisma.user.create({
-      data: {
-        email: email,
-        password: password,
-      },
-    });
+export async function signup(username: string, password: string) {
+  // You can add validation logic here (e.g., using Zod)
+  const user = await client.user.create({
+    data: {
+      username,
+      password,
+    },
+  });
 
-    return true;
-  } catch (error) {
-    return false;
-  }
+  console.log(user.id);
+
+  return "Signed up!";
 }
