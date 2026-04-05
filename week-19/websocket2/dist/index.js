@@ -2,6 +2,9 @@ import express from 'express';
 import { WebSocketServer } from 'ws';
 const app = express();
 const httpServer = app.listen(8080);
+app.get('/', (req, res) => {
+    res.send("Hello!");
+});
 const wss = new WebSocketServer({ server: httpServer });
 wss.on('connection', function connection(ws) {
     ws.on('error', console.error);
@@ -12,6 +15,6 @@ wss.on('connection', function connection(ws) {
             }
         });
     });
-    //   ws.send('Hello! Message From Server!!');
+    ws.send('Hello! Message From Server!!');
 });
 //# sourceMappingURL=index.js.map

@@ -1,41 +1,34 @@
 import { createClient } from "redis";
 const client = createClient();
-
-
-async function processSubmission(submission : string){
-    const {problemId, code, language} = JSON.parse(submission);
+async function processSubmission(submission) {
+    const { problemId, code, language } = JSON.parse(submission);
     console.log(`Processing submission for problemId ${problemId}...`);
     console.log(`Code: ${code}`);
     console.log(`Language: ${language}`);
-
     //simulate processing delay
-
-    await new Promise(resolve=>setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 1000));
     console.log(`Finished processing submission for problemId ${problemId}.`);
 }
-
-
-const startWorker = async()=>{
+const startWorker = async () => {
     try {
         await client.connect();
         console.log("worker connected to redis");
-
-        while(true){
+        while (true) {
             try {
-                const submission = await client.brPop("problems", 0);  //it will stay blocked until you get something
+                const submission = await client.brPop("problems", 0);
+                // @ts-ignore
                 await processSubmission(submission.element);
-            } catch (error) {
+            }
+            catch (error) {
                 console.error("Error processing submission:", error);
                 // Implement your error handling logic here. For example, you might want to push
                 // the submission back onto the queue or log the error to a file.
             }
         }
-
-    } catch (error) {
+    }
+    catch (error) {
         console.error("Failed to connect to Redis", error);
     }
-}
-
+};
 startWorker();
-
-//this is the worker logic where it takes the posted data present in the redis queue 
+//# sourceMappingURL=index.js.map

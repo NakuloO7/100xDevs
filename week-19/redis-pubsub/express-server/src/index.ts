@@ -37,3 +37,7 @@ const startServer = async()=>{
 }
 
 startServer();
+
+//this is the express server where we take data from the req.body 
+//and push this data to the redis queue 
+//and connect to the redis client
